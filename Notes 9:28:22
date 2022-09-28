@@ -1,0 +1,60 @@
+9/28/22
+
+Software applications will communicate through the operating system.
+
+Shell and Emacs are both applications that talk to the operating system
+* You can run several different instances of the same application on the same machine.
+
+Introspection occurs when a program looks at itself. (ps)
+
+sh creates new shell
+ps lists processes
+
+sh -c --> runs a single command in a new terminal, does not start a new interactive terminal.
+
+Shell:
+* ps
+* sh
+* kill
+* top - Shows a list of processes and how much cpu % they are utilizing
+* ls 
+** ls -d .; echo a
+* ; <- sequencing operator, do one command then do the next one.
+* & <- parallel operator, will run commands in parallel. It doesn't wait for the first command to finish
+* sleep <- sleeps 
+* | means run two commands in parallel, except send the output of the 1st command to the input of the 2nd command (piping)
+* echo - writes out text
+* less - Can be used to edit files, understands the same set of commands as vim, but you can never actually change the file (read-only)
+* wc - word count, outputs the number of bytes words and lines of the output
+
+* sh -c 'while true; do sleep 10& done'
+
+Minimization of Privileges 
+
+Software Tools Philosophy - You should not try to write a program to solve all of your issues. Rather, you should write your application using a collection of tools, with each of them being relatively simple and each tailored to solve one class of problems reasonably well.
+* You need to come up with a good set of tools, and then use those tools as well as possible. When something can't be done as well as you need, add or reconfigure an old tool. Keep each tool simple and don't let its scope be too big
+
+Little languages philosophy
+* Design small languages appropriate for each tool. Don't try to come up with a single programming language to solve all your problems.
+** Examples: sh, sed, grep
+
+
+When dealing with a network application, two types 
+* Throughput - Number of bytes u are transmitting (bits per second)
+* latency - Measured just in seconds, amount of time it takes between the time you press something and from the time when something happens.
+
+Emacs:
+* C-x - other window
+* C-x 1 - Make this the only window
+* C-x b - List keybinds
+* C-x h k KEY list 1 binding
+* M-x apropros RET - Does search for a command that does something
+* M-! (shell command) Ret
+* M-| (shell command) Ret <- Take all chars in current regiion, feed them to COMMAND as its std input, take output, put into shell command output
+* M-C-s - Regular expression search
+
+C-@ - set mark to point
+C-x C-x - Exchange point and mark
+
+Truncate
+
