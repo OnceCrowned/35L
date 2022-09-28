@@ -1,0 +1,44 @@
+35L 9/26/2022
+
+Construction Issues:
+
+File systems use (Data Design/Programming)
+Scripting (Python, Javascript, Shell)
+Integration (Integrating multiple pieces of an application into a single nicely integrated application)
+Configuration (Wrote the application but now you need it to run in a specific environment)
+Testing
+Version/Software Evolution/Version Control
+Low level debugging (gdb)
+Client Server Applications
+
+
+What we want our apps to do:
+* Have data that persists
+* Be fast
+* Be understandable to devs and users
+* Persistent vs Volatile
+** Volatile tells the compiler to not make v++, v++ equal to v+= 2, since v could be changed by something else.
+** Persistent are variables on a drive somewhere, they won't disappear if the machine shuts off. Persistent is even less volatile than non volatile (non-volatile is stored on RAMish)
+
+Ubuntu:
+* Is a distro (linux distribution) -> Linux is an O.S. Kernel
+* There is a kernel and libraries on the O.S., and then applications run over these systems
+** Emacs is an application, then a shell runs under emacs, then commands run under the shell.
+
+M-x shell RET
+uname -a RET
+M-! dpkg -l RET
+C-x o - Switch to other window
+C-x C-b list buffers (buffer = bunch of text in ram that is inside Emacs)
+C-x C-s (Save)
+
+Debian is upstream from Ubuntu, Ubuntu utilizes the packages in Debain
+
+Emacs is an IDE
+
+F = file name
+When you edit a file in emacs, it creates a symbolic link ".#F" (signal to other programs that the file is being edited)
+* Another file is created called "#F#", which is a copy of unsaved buffer for F.
+
+grep reads lines of input and outputs only the lines containing that pattern
+
