@@ -55,6 +55,18 @@ Emacs:
 
 C-@ - set mark to point
 C-x C-x - Exchange point and mark
-
+C-x 2 - split into 2 windows
+C-x 3 - Split into 3 windows
+C-x 0 - Split vertically (Make the current window vanish)
 Truncate
+
+
+Emacs is a modeful editor
+* Mode = method of interacting with editor
+** More efficient if you know what you're doing
+** Modeful editors require more expertise
+
+C-h m - Tells you what mode you're in
+C-x d - dirname RET - Puts you into dired mode (directory editing mode)
+* Trying to edit a directory that is a file that lists other files, and you're using a text editor to edit a directory. 
 

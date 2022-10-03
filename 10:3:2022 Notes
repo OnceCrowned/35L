@@ -1,0 +1,83 @@
+Notes 10/3/2022
+Topics: Layers, Emacs, Scripting, little languages, pattern matching
+
+Emacs has layers, it utilizes a C interpreter, then above the C interpreter there is a Lisp interface
+* 80% of the code is written in Lisp code
+
+The shell is its own little language
+* The shell is meant to be a command language, you don't feed the whole program to the shell. Instead, you type commands one at a time and then it goes and does commands right away.
+* Simple shell command: word (name of program) word1 (arg1) ... wordn-1 (argn-1)
+
+bash vs shell
+
+POSIX sh 
+* A specification for the shell
+* Bash is a shell that was given added features
+
+Executable Programs
+* wc = word count
+* cat outputs to file
+
+* cat >foo.c
+** Lets you make a program in the terminal and the output when you are finished will be stored in foo.c
+
+If the name of a program is slashless, it will look in the PATH env var. That's why you need ./ to run executables. You can also add . to path by doing PATH=$PATH:.
+
+Shell has built-in vars
+* $? expands to the exit status of the most recent command that you executed
+
+grep
+* Normal use: grep PATTERN FILE1, ... FILEn
+* Looks for every instance of pattern in each of the files, and if it finds the pattern is outputs it, otherwise it doesn't
+* Patterns: a letter will match itself, ie: a, x, etc...
+** If you want to match a special character, you need a backslash. To find *, you need \* in the pattern
+** \\ matches \
+* . matches any single char
+* ^ matches the start of line
+* $ matches the end of the line
+* [aeiou] matches the sequence of chars
+* You can take any pattern p and put a * after it, and this matches 0 or more Ps. grep xa*b*c -> an x followed by a lot of a's, followed by a lot of b's, followed by a lot of c's
+
+
+
+Quoting
+* Shell has special characters
+** ` ~ # $& * ( ) = [ \ | ; ' " < > ? whitespace
+* Single quote: ' followed by any characters youd like followed by a single quote '
+* you can use escape character \ to use apostrophes in a quote: '3 o'\'' clock'
+* If you use double quotes you can use most of the characters.
+
+
+grep pattern trouble
+* grep '*' foo
+
+grep -E pattern file
+* EREs = like BREs, but with extended features: P+ = PP*, p{2,5} = PP | PPP | PPPP | PPPPP, P | Q = match either P or Q
+
+grep -E '^|[^a-z]link[^a-z]|$'
+
+Files
+* File systems
+* Tree structured File Systems
+** Directory: File that maps filename components to files
+** Regular file: A non-special file that contains a (possibly empty) sequence of bytes
+** Special file: Built into kernel (/dev/null), always an empty file
+** Symbol link: Single file  that contains a string which is commonly interpreted as a file name. (box means symbolic link)
+*** Soft link is another name for symbolic link
+*** Just a set of bytes you arrived at by the ordinary hard link]
+
+
+
+File name - A non-empty sequence of non-/ characters
+
+A file system refers to a collection of files on a system. Most file structures follow a tree-based structue which indicates that files will be organized in subtrees of directories.
+
+
+Inode numbers will represent locations in file system (each file will have a distinct number within its file system).
+
+If a file system was an arbritrary graph instead of a tree, it could have loops, which means something like the find command could go on an infinite loop.
+* Hard-Links occur when you have two different names for the same file. The hard rule in linux is you can only create hard links to non-directories. 
+** The hard links to directories
+** .. is a built in hard link from a directory to its parent. . is a hard link that points to itself.
+** The parent of the root directory is itself. 
+* a/b/c vs /a/b/c - A filename that starts with a / will start the search in its working directory.
