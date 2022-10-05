@@ -1,0 +1,72 @@
+10/5/2022
+
+filesystems, scripting (sh), interaction (emacs)
+
+
+filesystems
+* You can have multiple hardlinks to the same file
+* A directory is a mapping from filename components to numbers 
+** Maps locations to numbers (usr could be mapped to 19, bin could be mappe to 36, lib could be matched to (numbers are inodes))
+* You can't have two different parents for the same directory.
+** Doesn't apply to non-directories. You could have a link to a direct file. 
+* create a hardlink -> ln a (original file) b (name for same file)
+
+How to destroy a file
+* rm file
+** All rm does is an operation on current directory. It removes a file in the current directory. 
+* Reference Count - Link Count (counts the number of hardlinks to that file)
+* If you have a program that currently has a file open, the file will have a link count until someone is not accessing the file
+* If the link count is 0, the system checks to see if anyone has the file open, and then waits until the user exits/closes before freeing up the storage.
+* Remove a file and all its hard links - find . -inum (inode) -exc rm {} ';'
+
+Symlinks
+* You can have a symlink to foo, but you can also have a symlink to nowhere
+* If you remove the original file that the symlink points to, the symlink will have nothing
+
+Filenames are resolved left to right
+* /bin/head resolves to /usr/bin/head (this is considered using a symlink, it's a shortcut for symlinking to the directory)
+
+
+
+ls -ln - inode#, filetype +permissions (-rw-r--r--)
+* filetypes: - (regular file), d (directory), l (symbolic links), c (character-special files (files that aren't really there, but the kernel pretends they're there)), 
+** There's a few extra bits ontop of the original 9, including filetype, superuser indication, ...
+
+How to update a file
+* Files are updated when you save a file such as through emacs
+* 1. Write directly to file
+* 2. Write to temporary file, mv temporary file to original file location.
+* It's up to the application for which method of file saving will be used.
+
+
+Shell commands
+* head -n 10 (first 10 lines)
+* tail -n 10 (last 10 lines)
+* grep
+* sed - Programmable incremental editor (can be used to do the other commands)
+** sed -n '1,10p' = head -n 10
+** sed '10q' (quit after line 10) = head -n 10
+* sed commands: p (print), q (quit), s (substitute) (s/a.*b/c/)
+* delete trailing whitespace from every line and delete empty lines:
+** sed 's/[[:space:]]*$//; /^$/d'
+
+* awk (a programming language, not a text editor)
+** awk '{x=$0; print"("x")";}'
+** awk '{if($0==x) print $0; x=$0 }'
+
+* perl
+* python
+
+Python
+
+History
+* Basic - instructional language that came out in 1960s
+* ABC - Instructors in netherlands Gave students a floppy disk, which would give you an IDE to run ABC
+*** ABC had algorithms built in, forced indentations
+* Perl
+** sh + awk + sed
+* Python uses the ideas of ABC but also used the ideas of Perl
+** if a==b;
+    print("x")
+    print("y")
+Python needs consistent indentation for statements
